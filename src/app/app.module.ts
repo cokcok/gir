@@ -8,6 +8,16 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpClientModule } from '@angular/common/http';
+
+
+import { ChkgirPageModule } from '../pages/chkgir/chkgir.module';
+
+import { GirProvider } from '../providers/gir/gir';
+import { ConfigServiceProvider } from '../providers/config-service/config-service';
+
+
+
 
 @NgModule({
   declarations: [
@@ -17,7 +27,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),ChkgirPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,7 +39,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GirProvider,
+    ConfigServiceProvider
   ]
 })
 export class AppModule {}
