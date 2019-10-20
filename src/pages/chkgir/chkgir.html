@@ -68,15 +68,12 @@
           แรงงาน
         </ion-col>
         <ion-col>
-          เลขบัตรปชช.คนกรีด
-        </ion-col>
-        <ion-col>
-          ชื่อคนกรีด
+          คนกรีด
         </ion-col>
       </ion-row>
-      <ion-row *ngFor="let c of item_data_land_rf ">
+      <ion-row *ngFor="let c of item_data_land_rf ; let i = index">
         <ion-col>
-          {{c.rf_row}}
+          {{i+1}}
         </ion-col>
         <ion-col>
           {{c.rf_ld_type}}
@@ -97,10 +94,17 @@
           {{c.rf_typehrvemp | typehrvempPipe}}
         </ion-col>
         <ion-col>
-          {{c.rf_emp_idc}}
-        </ion-col>
-        <ion-col>
-          {{c.rf_emp_name}}
+          <ion-row *ngFor="let cc of item_data_land_rf[i]['rf_rs_emp'] ">
+            <ion-col>
+              {{cc.rf_seq}}
+            </ion-col>
+            <ion-col>
+              {{cc.rf_emp_idc}}
+            </ion-col>
+            <ion-col>
+              {{cc.rf_emp_name}}
+            </ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -111,7 +115,6 @@
       </ion-row>
       <ion-row>
         <ion-col>
-
         </ion-col>
         <ion-col>
           หลักฐานที่ดิน/เลขที่
@@ -129,9 +132,9 @@
           แบบปลูก
         </ion-col>
       </ion-row>
-      <ion-row *ngFor="let c of item_data_land_af ">
+      <ion-row *ngFor="let c of item_data_land_af ; let i = index">
         <ion-col>
-          {{c.af_row}}
+          {{i+1}}
         </ion-col>
         <ion-col>
           {{c.af_land_name}}
@@ -152,100 +155,108 @@
     </ion-grid>
 
     <ion-grid *ngIf="item_data_land_fas?.length ">
-        <ion-row>
-          <ion-col> แปลง พอย.</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col> </ion-col>
-          <ion-col>
-            หลักฐานที่ดิน/เลขที่
-          </ion-col>
-          <ion-col>
-           อายุยาง
-          </ion-col>
-          <ion-col>
-            เนื้อที่
-          </ion-col>
-        </ion-row>
-        <ion-row *ngFor="let c of item_data_land_fas ">
-          <ion-col>
-            {{c.fas_row}}
-          </ion-col>
-          <ion-col>
-            {{c.fas_land_name}}
-          </ion-col>
-          <ion-col>
-            {{c.fas_yang_age}}
-          </ion-col>
-          <ion-col>
-            {{c.fas_rai}} - {{c.fas_ngan}} - {{c.fas_waa}}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-row>
+        <ion-col> แปลง พอย.</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col> </ion-col>
+        <ion-col>
+          หลักฐานที่ดิน/เลขที่
+        </ion-col>
+    <!--     <ion-col>
+          อายุยาง
+        </ion-col> -->
+        <ion-col>
+          เนื้อที่
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let c of item_data_land_fas ; let i = index">
+        <ion-col>
+          {{i+1}}
+        </ion-col>
+        <ion-col>
+          <ion-row *ngFor="let cc of item_data_land_fas[i]['fas_land'] ">
+            <ion-col>
+              {{cc.fas_land_name}}
+            </ion-col>
+          <!--   <ion-col>
+              {{cc.fas_yang_age}}
+            </ion-col> -->
+          </ion-row>
+        </ion-col>
 
-      <ion-grid *ngIf="item_data_land_rs?.length ">
-          <!-- *ngIf="item_data_land.length  | datafilter:item_data_land:1> 0" -->
-          <ion-row>
-            <ion-col> แปลง ขกม. </ion-col>
+        <ion-col>
+          {{c.fas_rai}} - {{c.fas_ngan}} - {{c.fas_waa}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="item_data_land_rs?.length ">
+      <ion-row>
+        <ion-col> แปลง ขกม. </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          หลักฐานที่ดิน/เลขที่
+        </ion-col>
+        <ion-col>
+          ปีปลูก
+        </ion-col>
+        <ion-col>
+          เนื้อที่
+        </ion-col>
+        <ion-col>
+          สถานะการเปิดกรีด
+        </ion-col>
+        <ion-col>
+          ผลผลิตยาง
+        </ion-col>
+        <ion-col>
+          แรงงาน
+        </ion-col>
+        <ion-col>
+          คนกรีด
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let c of item_data_land_rs; let i = index  ">
+        <ion-col>
+          {{i+1}}
+        </ion-col>
+        <ion-col>
+          {{c.rs_ld_type}}
+        </ion-col>
+        <ion-col>
+          {{c.rs_pl_yr}}
+        </ion-col>
+        <ion-col>
+          {{c.rs_rai}} - {{c.rs_ngan}}- {{c.rs_waa}}
+        </ion-col>
+        <ion-col>
+          {{c.rs_typerubcnt}}
+        </ion-col>
+        <ion-col>
+          {{c.rs_typerub | typerub}}
+        </ion-col>
+        <ion-col>
+          {{c.rs_typehrvemp | typehrvemprs}}
+        </ion-col>
+        <ion-col>
+          <ion-row *ngFor="let cc of item_data_land_rs[i]['rf_rs_emp'] ">
+            <ion-col>
+              {{cc.rs_seq}}
+            </ion-col>
+            <ion-col>
+              {{cc.rs_emp_idc}}
+            </ion-col>
+            <ion-col>
+              {{cc.rs_emp_name}}
+            </ion-col>
           </ion-row>
-          <ion-row>
-            <ion-col>
-            </ion-col>
-            <ion-col>
-              หลักฐานที่ดิน/เลขที่
-            </ion-col>
-            <ion-col>
-              ปีปลูก
-            </ion-col>
-            <ion-col>
-              เนื้อที่
-            </ion-col>
-            <ion-col>
-              สถานะการเปิดกรีด
-            </ion-col>
-            <ion-col>
-              ผลผลิตยาง
-            </ion-col>
-            <ion-col>
-              แรงงาน
-            </ion-col>
-            <ion-col>
-              เลขบัตรปชช.คนกรีด
-            </ion-col>
-            <ion-col>
-              ชื่อคนกรีด
-            </ion-col>
-          </ion-row>
-          <ion-row *ngFor="let c of item_data_land_rs ">
-            <ion-col>
-              {{c.rs_row}}
-            </ion-col>
-            <ion-col>
-              {{c.rs_ld_type}}
-            </ion-col>
-            <ion-col>
-              {{c.rs_pl_yr}}
-            </ion-col>
-            <ion-col>
-              {{c.rs_rai}} - {{c.rs_ngan}}- {{c.rs_waa}}
-            </ion-col>
-            <ion-col>
-              {{c.rs_typerubcnt}}
-            </ion-col>
-            <ion-col>
-              {{c.rs_typerub | typerub}}
-            </ion-col>
-            <ion-col>
-              {{c.rs_typehrvemp | typehrvemprs}}
-            </ion-col>
-            <ion-col>
-              {{c.rs_emp_idc}}
-            </ion-col>
-            <ion-col>
-              {{c.rs_emp_name}}
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </form>
 </ion-content>

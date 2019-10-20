@@ -15,6 +15,9 @@ import { ChkgirPageModule } from '../pages/chkgir/chkgir.module';
 
 import { GirProvider } from '../providers/gir/gir';
 import { ConfigServiceProvider } from '../providers/config-service/config-service';
+import { TioncardPageModule } from '../pages/tioncard/tioncard.module';
+import { EchkgirdetailPageModule } from '../pages/echkgirdetail/echkgirdetail.module';
+
 
 
 
@@ -28,7 +31,7 @@ import { ConfigServiceProvider } from '../providers/config-service/config-servic
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),ChkgirPageModule
+    IonicModule.forRoot(MyApp),ChkgirPageModule,TioncardPageModule,EchkgirdetailPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
