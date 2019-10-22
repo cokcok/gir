@@ -1,3 +1,4 @@
+
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -7,7 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ChkgirPage } from '../pages/chkgir/chkgir';
 import { TioncardPage } from '../pages/tioncard/tioncard';
-
+import { ChkgirstatusPage } from './../pages/chkgirstatus/chkgirstatus';
 
 
 
@@ -17,7 +18,7 @@ import { TioncardPage } from '../pages/tioncard/tioncard';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = TioncardPage;
+  rootPage: any = ChkgirstatusPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -29,7 +30,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'TioncardPage', component: TioncardPage },
-      { title: 'ChkgirPage', component: ChkgirPage }
+      { title: 'ChkgirPage', component: ChkgirPage } ,
+      { title: 'ChkgirstatusPage', component: ChkgirstatusPage }
     ];
 
   }

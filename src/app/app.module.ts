@@ -10,13 +10,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 
-
-import { ChkgirPageModule } from '../pages/chkgir/chkgir.module';
-
 import { GirProvider } from '../providers/gir/gir';
 import { ConfigServiceProvider } from '../providers/config-service/config-service';
+
+import { ChkgirPageModule } from '../pages/chkgir/chkgir.module';
 import { TioncardPageModule } from '../pages/tioncard/tioncard.module';
 import { EchkgirdetailPageModule } from '../pages/echkgirdetail/echkgirdetail.module';
+import { ChkgirstatusPageModule } from '../pages/chkgirstatus/chkgirstatus.module';
+
 
 
 
@@ -31,7 +32,7 @@ import { EchkgirdetailPageModule } from '../pages/echkgirdetail/echkgirdetail.mo
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),ChkgirPageModule,TioncardPageModule,EchkgirdetailPageModule
+    IonicModule.forRoot(MyApp),ChkgirPageModule,TioncardPageModule,EchkgirdetailPageModule,ChkgirstatusPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

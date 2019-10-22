@@ -26,4 +26,16 @@ export class GirProvider {
     };
     return this.http.post<data>(api,data,{headers:header});
   }
+
+  Chkgir_status(username:string,type_person,uniqid): Observable<data> {
+    let api = this.c_config.ip+"/chkgirstatus_web.php";
+    const header = { 'Content-Type': 'application/json' };
+
+     let data = {
+       'idcard':username,
+       'id':uniqid,
+       'type_person':type_person
+    };
+    return this.http.post<data>(api,data,{headers:header});
+  }
 }
