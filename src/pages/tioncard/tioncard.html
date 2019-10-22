@@ -109,61 +109,82 @@
       <ion-card-header>
         แปลง คบก.
       </ion-card-header>
-      <ion-list *ngFor="let c of item_data_land_rf ; let i = index ">
-        <ion-item>
+      <ion-list *ngFor="let c of item_data_land_rf ; let i = index " >
+        <ion-item class="detail1">
+
           <ion-row>
             <ion-col>
               <h2>{{i+1}}. {{c.rf_ld_type}}</h2>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-col>
-              <h3>ปีปลูก: {{c.rf_pl_yr}} เนื้อที่: {{c.rf_rai}}-{{c.rf_ngan}}-{{c.rf_waa}}</h3>
+            <h3><b>ปีปลูก :</b> {{c.rf_pl_yr}} <b>เนื้อที่ : </b> {{c.rf_rai}}-{{c.rf_ngan}}-{{c.rf_waa}} ไร่</h3>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-col>
-              <h3>สถานะการเปิดกรีด: {{c.rf_typerubcnt}} ผลผลิตยาง: {{c.rf_typerub | typerub}}</h3>
+              <h3><b>สถานะการเปิดกรีด :</b> {{c.rf_typerubcnt}} </h3>
             </ion-col>
           </ion-row>
+
+          <ion-row>
+              <ion-col>
+                <h3> <b>ผลผลิตยาง :</b> {{c.rf_typerub | typerub}}</h3>
+              </ion-col>
+          </ion-row>
+
           <ion-row>
             <ion-col>
-              <h3>แรงงาน: {{c.rf_typehrvemp | typehrvempPipe}}</h3>
+              <h3><b>แรงงาน :</b> {{c.rf_typehrvemp | typehrvempPipe}}</h3>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-col *ngFor="let cc of item_data_land_rf[i]['rf_rs_emp']">
-              <h3>คนกรีด: {{cc.rf_seq}} .{{cc.rf_emp_idc}}
+              <h3><b>คนกรีด :</b> {{cc.rf_seq}}. {{cc.rf_emp_idc}}
                 {{cc.rf_emp_name}}</h3>
             </ion-col>
           </ion-row>
+
         </ion-item>
-
-
-
       </ion-list>
     </ion-card>
+
     <ion-card *ngIf="item_data_land_af?.length ">
       <ion-card-header>
         แปลง ปลูกแทน.
       </ion-card-header>
       <ion-list *ngFor="let c of item_data_land_af ; let i = index ">
-        <ion-item>
+
+        <ion-item class="detail1">
+
           <ion-row>
             <ion-col>
               <h2>{{i+1}}. {{c.af_land_name}}</h2>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-col>
-              <h3>ปีปลูก: {{c.af_plant_yr}} เนื้อที่: {{c.af_rai}}-{{c.af_ngan}}-{{c.af_waa}}</h3>
+              <h3><b>ปีปลูก :</b> {{c.af_plant_yr}} <b>เนื้อที่ : </b> {{c.af_rai}}-{{c.af_ngan}}-{{c.af_waa}} ไร่</h3>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-col>
-              <h3>เลขอนุมัติ: {{c.af_num_app}} แบบปลูก: {{c.af_type_plant | typeplant}}</h3>
+              <h3><b>เลขอนุมัติ :</b> {{c.af_num_app}} </h3>
             </ion-col>
           </ion-row>
+
+          <ion-row>
+              <ion-col>
+                <h3> <b>แบบปลูก :</b> {{c.af_type_plant | typeplant}}</h3>
+              </ion-col>
+            </ion-row>
+
         </ion-item>
       </ion-list>
     </ion-card>
@@ -173,11 +194,13 @@
       <ion-card-header>
         แปลง พอย.
       </ion-card-header>
+
       <ion-list *ngFor="let c of item_data_land_fas ; let i = index ">
-        <ion-item>
-          <ion-row *ngFor="let cc of item_data_land_fas[i]['fas_land']">
+        <ion-item class="detail1">
+
+          <ion-row >
             <ion-col>
-              <h2> {{i+1}}.{{cc.fas_land_name}}</h2>
+                <h2>{{i+1}}. <a class="poy" *ngFor="let cc of item_data_land_fas[i]['fas_land']">  {{cc.fas_land_name}}</a></h2>
             </ion-col>
             <!--             <ion-row *ngFor="let cc of item_data_land_fas[i]['fas_land']">
                 <ion-col >
@@ -188,21 +211,23 @@
               <h2> {{cc.fas_land_name}}</h2>
             </ion-col> -->
           </ion-row>
+
           <ion-row>
             <ion-col>
-              <h3>เนื้อที่: {{c.fas_rai}} - {{c.fas_ngan}} - {{c.fas_waa}}</h3>
+              <h3><b>เนื้อที่ : </b> {{c.fas_rai}}-{{c.fas_ngan}}-{{c.fas_waa}} ไร่</h3>
             </ion-col>
           </ion-row>
 
         </ion-item>
       </ion-list>
     </ion-card>
+
     <ion-card *ngIf="item_data_land_rs?.length ">
       <ion-card-header>
         แปลง ขกม.
       </ion-card-header>
       <ion-list *ngFor="let c of item_data_land_rs ; let i = index ">
-        <ion-item>
+        <ion-item class="detail1">
           <ion-row>
             <ion-col>
               <h2>{{i+1}}. {{c.rs_ld_type}}</h2>
@@ -210,22 +235,27 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <h3>ปีปลูก: {{c.rs_pl_yr}} เนื้อที่:{{c.rs_rai}} - {{c.rs_ngan}}- {{c.rs_waa}}</h3>
+              <h3><b>ปีปลูก :</b> {{c.rs_pl_yr}} <b> เนื้อที่ : </b>{{c.rs_rai}}-{{c.rs_ngan}}-{{c.rs_waa}} ไร่</h3>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <h3>สถานะการเปิดกรีด: {{c.rs_typerubcnt}} ผลผลิตยาง: {{c.rs_typerub | typerub}}</h3>
+              <h3><b>สถานะการเปิดกรีด :</b> {{c.rs_typerubcnt}}</h3>
             </ion-col>
           </ion-row>
           <ion-row>
+              <ion-col>
+                <h3><b>ผลผลิตยาง :</b>  {{c.rs_typerub | typerub}}</h3>
+              </ion-col>
+            </ion-row>
+          <ion-row>
             <ion-col>
-              <h3>แรงงาน: {{c.rs_typehrvemp | typehrvemprs}}</h3>
+              <h3><b>แรงงาน :</b> {{c.rs_typehrvemp | typehrvemprs}}</h3>
             </ion-col>
           </ion-row>
           <ion-row *ngFor="let cc of item_data_land_rs[i]['rf_rs_emp']">
             <ion-col>
-              <h3>คนกรีด: {{cc.rs_seq}} .{{cc.rs_emp_idc}}
+              <h3><b>คนกรีด : </b> {{cc.rs_seq}}. {{cc.rs_emp_idc}}
                 {{cc.rs_emp_name}}</h3>
             </ion-col>
           </ion-row>
