@@ -11,7 +11,7 @@ export class ChkgirstatusPage {
   type_person:any; idcard:any;name:any; item_data_land_rf=[];item_data_land_af=[];item_data_land_fas=[];item_data_land_rs=[];clicked:any;
   item_data_land_rf_emp=[];tel:any;
   constructor(public girPro : GirProvider, public config : ConfigServiceProvider,public navCtrl: NavController, public navParams: NavParams) {
-    this.idcard = '3100202253574';
+
   }
 
   ionViewDidEnter() {
@@ -33,11 +33,10 @@ export class ChkgirstatusPage {
     this.girPro.Chkgir_status(myForm.idcard,myForm.type_person,uniqid).subscribe(
       (data) => {
         console.log(data);
-          if (data.data_detail.length > 0) {
+        if (data.data_detail.length > 0) {
           this.name = data.data_detail[0]['rf_name'];
           this.tel = data.data_detail[0]['rf_tel'];
           this.item_data_land_rf = data.data_detail.filter(item => item.land_type == 2); //คบก.
-          console.log( this.item_data_land_rf);
           this.item_data_land_af = data.data_detail.filter(item => item.land_type == 1); // ปลูกแทน
           this.item_data_land_fas = data.data_detail.filter(item => item.land_type == 3); //พอย.
           this.item_data_land_rs = data.data_detail.filter(item => item.land_type == 4); //ขกม.

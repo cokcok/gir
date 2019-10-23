@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title></ion-title>
-    <ion-title>chkgirstatus</ion-title>
+    <ion-title>ระบบตรวจสอบข้อมูลเกษตกร เบื้องต้น</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -28,7 +28,7 @@
       </ion-row>
 
     </ion-grid>
-    <ion-grid *ngIf="item_data_land_rf?.length">
+    <ion-grid *ngIf="item_data_land_rf?.length || item_data_land_rs?.length">
       <ion-row>
         <ion-col>
           <ion-item>
@@ -59,7 +59,7 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <h3><b>ที่ตั้งสวน หมู่ที่ </b>{{c.rf_pl_mooh}} <b> ตำบล </b> {{c.rf_pl_ld_ds}} </h3>
+              <h3><b>ที่ตั้งสวน หมู่ที่ </b>{{c.rf_pl_mooh}} <b> ตำบล </b> {{c.rf_pl_ld_pl}} </h3>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -69,7 +69,7 @@
           </ion-row>
           <ion-row>
             <ion-col>
-            <h3><b>ปีปลูก :</b> {{c.rf_pl_yr}} <b>เนื้อที่ : </b> {{c.rf_rai}}-{{c.rf_ngan}}-{{c.rf_waa}} ไร่</h3>
+            <h3><b>ปีปลูก :</b> {{c.rf_pl_yr}} <b> อายุ :</b> {{c.rf_plant_year}}  <b> เนื้อที่ : </b> {{c.rf_rai}}-{{c.rf_ngan}}-{{c.rf_waa}} ไร่</h3>
             </ion-col>
           </ion-row>
 
@@ -81,7 +81,7 @@
 
           <ion-row>
               <ion-col>
-                <h3> <b>ผลผลิตยาง :</b> {{c.rf_typerub | typerub}}</h3>
+                <h3> <b>รูปแบบการจำหน่ายผลผลิตยาง  :</b> {{c.rf_typerub | typerub}}</h3>
               </ion-col>
           </ion-row>
 
@@ -102,7 +102,7 @@
               <h3><b>คุณสมบัติ :</b> {{c.rf_typeflg}}</h3>
             </ion-col>
           </ion-row>
-          <ion-row *ngIf="c.rf_flg==='2'">
+          <ion-row *ngIf="c.rf_flg !=='0'">
             <ion-col [ngClass]="c.rf_flg==='0'?'flgtrue':'flgerr'">
               <h3><b>สาเหตุ :</b> {{c.rf_flg_cause}}</h3>
             </ion-col>
@@ -110,6 +110,69 @@
         </ion-item>
       </ion-list>
     </ion-card>
+
+    <ion-card *ngIf="item_data_land_rs?.length ">
+        <ion-card-header>
+          แปลง ขกม.
+        </ion-card-header>
+        <ion-list *ngFor="let c of item_data_land_rs ; let i = index ">
+          <ion-item class="detail1">
+            <ion-row>
+              <ion-col>
+                <h2>{{i+1}}. {{c.rs_ld_type}}</h2>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                  <h3><b>ที่ตั้งสวน หมู่ที่ </b>{{c.rs_pl_mooh}} <b> ตำบล </b> {{c.rs_pl_ld_pl}} </h3>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <h3><b>อำเภอ </b>{{c.rs_pl_ld_ds}}  <b>จังหวัด </b>{{c.rs_pl_ld_pr}}   </h3>
+                </ion-col>
+              </ion-row>
+            <ion-row>
+              <ion-col>
+                <h3><b>ปีปลูก :</b> {{c.rs_pl_yr}} <b> อายุ :</b> {{c.rs_plant_year}}<b> เนื้อที่ : </b>{{c.rs_rai}}-{{c.rs_ngan}}-{{c.rs_waa}} ไร่</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <h3><b>สถานะการเปิดกรีด :</b> {{c.rs_typerubcnt}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                  <h3><b>รูปแบบการจำหน่ายผลผลิตยาง :</b>  {{c.rs_typerub | typerub}}</h3>
+                </ion-col>
+              </ion-row>
+            <ion-row>
+              <ion-col>
+                <h3><b>แรงงาน :</b> {{c.rs_typehrvemp | typehrvemprs}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let cc of item_data_land_rs[i]['rf_rs_emp']">
+              <ion-col>
+                <h3><b>คนกรีด : </b> {{cc.rs_seq}}. {{cc.rs_emp_idc}}
+                  {{cc.rs_emp_name}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col [ngClass]="c.rs_flg==='0'?'flgtrue':'flgerr'">
+                  <h3><b>คุณสมบัติ :</b> {{c.rs_typeflg}}</h3>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="c.rs_flg !=='0'">
+                <ion-col [ngClass]="c.rs_flg==='0'?'flgtrue':'flgerr'">
+                  <h3><b>สาเหตุ :</b> {{c.rs_flg_cause}}</h3>
+                </ion-col>
+              </ion-row>
+
+          </ion-item>
+        </ion-list>
+      </ion-card>
+
 
     <ion-card *ngIf="item_data_land_af?.length ">
       <ion-card-header>
@@ -180,47 +243,6 @@
       </ion-list>
     </ion-card>
 
-    <ion-card *ngIf="item_data_land_rs?.length ">
-      <ion-card-header>
-        แปลง ขกม.
-      </ion-card-header>
-      <ion-list *ngFor="let c of item_data_land_rs ; let i = index ">
-        <ion-item class="detail1">
-          <ion-row>
-            <ion-col>
-              <h2>{{i+1}}. {{c.rs_ld_type}}</h2>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <h3><b>ปีปลูก :</b> {{c.rs_pl_yr}} <b> เนื้อที่ : </b>{{c.rs_rai}}-{{c.rs_ngan}}-{{c.rs_waa}} ไร่</h3>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <h3><b>สถานะการเปิดกรีด :</b> {{c.rs_typerubcnt}}</h3>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-              <ion-col>
-                <h3><b>ผลผลิตยาง :</b>  {{c.rs_typerub | typerub}}</h3>
-              </ion-col>
-            </ion-row>
-          <ion-row>
-            <ion-col>
-              <h3><b>แรงงาน :</b> {{c.rs_typehrvemp | typehrvemprs}}</h3>
-            </ion-col>
-          </ion-row>
-          <ion-row *ngFor="let cc of item_data_land_rs[i]['rf_rs_emp']">
-            <ion-col>
-              <h3><b>คนกรีด : </b> {{cc.rs_seq}}. {{cc.rs_emp_idc}}
-                {{cc.rs_emp_name}}</h3>
-            </ion-col>
-          </ion-row>
 
-
-        </ion-item>
-      </ion-list>
-    </ion-card>
   </form>
 </ion-content>
