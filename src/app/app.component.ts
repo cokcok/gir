@@ -1,16 +1,11 @@
-
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { ChkgirPage } from '../pages/chkgir/chkgir';
-import { TioncardPage } from '../pages/tioncard/tioncard';
 import { ChkgirstatusPage } from './../pages/chkgirstatus/chkgirstatus';
-
-
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +17,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public ga: GoogleAnalytics ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -42,7 +37,16 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-    });
+
+
+          this.ga.startTrackerWithId('UA-150913909-1')
+      .then(() => {
+        console.log('Google analytics is ready now');
+         this.ga.trackView('test');
+      })
+      .catch(e => console.log('Error starting GoogleAnalytics', e));
+
+       });
   }
 
   openPage(page) {

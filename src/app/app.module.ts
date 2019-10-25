@@ -1,3 +1,5 @@
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -18,10 +20,7 @@ import { TioncardPageModule } from '../pages/tioncard/tioncard.module';
 import { EchkgirdetailPageModule } from '../pages/echkgirdetail/echkgirdetail.module';
 import { ChkgirstatusPageModule } from '../pages/chkgirstatus/chkgirstatus.module';
 
-
-
-
-
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 @NgModule({
   declarations: [
@@ -44,7 +43,7 @@ import { ChkgirstatusPageModule } from '../pages/chkgirstatus/chkgirstatus.modul
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GirProvider,
+    GirProvider,GoogleAnalytics,
     ConfigServiceProvider
   ]
 })

@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title></ion-title>
-    <ion-title>ระบบตรวจสอบข้อมูลเกษตกร เบื้องต้น</ion-title>
+    <ion-title>ระบบตรวจสอบข้อมูลเกษตรกร เบื้องต้น</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -98,13 +98,13 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col [ngClass]="c.rf_flg==='0'?'flgtrue':'flgerr'">
-              <h3><b>คุณสมบัติ :</b> {{c.rf_typeflg}}</h3>
+            <ion-col >
+              <h3 [ngClass]="c.rf_flg==='0'?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rf_typeflg}}</h3>
             </ion-col>
           </ion-row>
           <ion-row *ngIf="c.rf_flg !=='0'">
-            <ion-col [ngClass]="c.rf_flg==='0'?'flgtrue':'flgerr'">
-              <h3><b>สาเหตุ :</b> {{c.rf_flg_cause}}</h3>
+            <ion-col >
+              <h3 [ngClass]="c.rf_flg==='0'?'flgtrue':'flgerr'"><b>สาเหตุ :</b> {{c.rf_flg_cause}}</h3>
             </ion-col>
           </ion-row>
         </ion-item>
@@ -159,13 +159,13 @@
               </ion-col>
             </ion-row>
             <ion-row>
-                <ion-col [ngClass]="c.rs_flg==='0'?'flgtrue':'flgerr'">
-                  <h3><b>คุณสมบัติ :</b> {{c.rs_typeflg}}</h3>
+                <ion-col>
+                  <h3  [ngClass]="c.rs_flg==='0'?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rs_typeflg}}</h3>
                 </ion-col>
               </ion-row>
               <ion-row *ngIf="c.rs_flg !=='0'">
-                <ion-col [ngClass]="c.rs_flg==='0'?'flgtrue':'flgerr'">
-                  <h3><b>สาเหตุ :</b> {{c.rs_flg_cause}}</h3>
+                <ion-col >
+                  <h3 [ngClass]="c.rs_flg==='0'?'flgtrue':'flgerr'"><b>สาเหตุ :</b> {{c.rs_flg_cause}}</h3>
                 </ion-col>
               </ion-row>
 
