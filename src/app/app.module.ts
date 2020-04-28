@@ -21,6 +21,9 @@ import { EchkgirdetailPageModule } from '../pages/echkgirdetail/echkgirdetail.mo
 import { ChkgirstatusPageModule } from '../pages/chkgirstatus/chkgirstatus.module';
 
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { NetworkInterface } from '@ionic-native/network-interface';
+
+
 
 @NgModule({
   declarations: [
@@ -43,7 +46,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GirProvider,GoogleAnalytics,
+    GirProvider,GoogleAnalytics,NetworkInterface,
     ConfigServiceProvider
   ]
 })

@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title></ion-title>
-    <ion-title>ระบบตรวจสอบข้อมูลเกษตรกร เบื้องต้น</ion-title>
+    <ion-title>ระบบตรวจสอบข้อมูลเกษตรกรที่ปลูกยางพารา เบื้องต้น</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -28,7 +28,7 @@
       </ion-row>
 
     </ion-grid>
-    <ion-grid *ngIf="item_data_land_rf?.length || item_data_land_rs?.length">
+    <ion-grid *ngIf="item_data_land_rf?.length || item_data_land_rs?.length || item_data_tapper?.length">
       <ion-row>
         <ion-col>
           <ion-item>
@@ -40,6 +40,12 @@
           <ion-item>
             <ion-label floating>เบอร์ติดต่อ:</ion-label>
             <ion-input type="text" [(ngModel)]="tel" name="tel"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>สถานะเกษตรกร:</ion-label>
+            <ion-input type="text" [(ngModel)]="reqtype" name="reqtype"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -91,7 +97,7 @@
             </ion-col>
           </ion-row>
 
-          <ion-row>
+          <ion-row >
             <ion-col *ngFor="let cc of item_data_land_rf[i]['rf_rs_emp']">
               <h3><b>คนกรีด :</b> {{cc.rf_seq}}. {{cc.rf_emp_idc}}
                 {{cc.rf_emp_name}}</h3>
@@ -99,12 +105,14 @@
           </ion-row>
           <ion-row>
             <ion-col >
-              <h3 [ngClass]="c.rf_flg==='0'?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rf_typeflg}}</h3>
+              <!-- <h3 [ngClass]="c.rf_flg==='0'|| c.rf_flg ==='3'?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rf_typeflg}}</h3> -->
+              <h3 [ngClass]="rf_flg.indexOf(c.rf_flg)> -1?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rf_typeflg}}</h3>
             </ion-col>
           </ion-row>
-          <ion-row *ngIf="c.rf_flg !=='0'">
+          <!-- <ion-row *ngIf="c.rf_flg !=='0' && c.rf_flg !=='3' "> -->
+          <ion-row *ngIf="rf_flg.indexOf(c.rf_flg) === -1 ">
             <ion-col >
-              <h3 [ngClass]="c.rf_flg==='0'?'flgtrue':'flgerr'"><b>สาเหตุ :</b> {{c.rf_flg_cause}}</h3>
+              <h3 class="flgerr"><b>สาเหตุ :</b> {{c.rf_flg_cause}}</h3>
             </ion-col>
           </ion-row>
         </ion-item>
@@ -160,12 +168,12 @@
             </ion-row>
             <ion-row>
                 <ion-col>
-                  <h3  [ngClass]="c.rs_flg==='0'?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rs_typeflg}}</h3>
+                  <h3  [ngClass]="rf_flg.indexOf(c.rs_flg)> -1?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rs_typeflg}}</h3>
                 </ion-col>
               </ion-row>
-              <ion-row *ngIf="c.rs_flg !=='0'">
+              <ion-row *ngIf="rf_flg.indexOf(c.rs_flg) === -1">
                 <ion-col >
-                  <h3 [ngClass]="c.rs_flg==='0'?'flgtrue':'flgerr'"><b>สาเหตุ :</b> {{c.rs_flg_cause}}</h3>
+                  <h3 class="flgerr"><b>สาเหตุ :</b> {{c.rs_flg_cause}}</h3>
                 </ion-col>
               </ion-row>
 
@@ -243,6 +251,65 @@
       </ion-list>
     </ion-card>
 
+    <ion-card *ngIf="item_data_tapper?.length ">
+      <ion-card-header>
+        แปลง ที่กรีด
+      </ion-card-header>
+      <ion-list *ngFor="let c of item_data_tapper ; let i = index ">
+        <ion-item class="detail1">
+          <ion-row>
+            <ion-col>
+              <h2>{{i+1}}. {{c.rs_ld_type}}</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                <h3><b>ที่ตั้งสวน หมู่ที่ </b>{{c.rs_pl_mooh}} <b> ตำบล </b> {{c.rs_pl_ld_pl}} </h3>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <h3><b>อำเภอ </b>{{c.rs_pl_ld_ds}}  <b>จังหวัด </b>{{c.rs_pl_ld_pr}}   </h3>
+              </ion-col>
+            </ion-row>
+          <ion-row>
+            <ion-col>
+              <h3><b>ปีปลูก :</b> {{c.rs_pl_yr}} <b> อายุ :</b> {{c.rs_plant_year}}<b> เนื้อที่ : </b>{{c.rs_rai}}-{{c.rs_ngan}}-{{c.rs_waa}} ไร่</h3>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h3><b>สถานะการเปิดกรีด :</b> {{c.rs_typerubcnt}}</h3>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                <h3><b>รูปแบบการจำหน่ายผลผลิตยาง :</b>  {{c.rs_typerub | typerub}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col>
+                <h3><b>กรีดให้  : </b>  {{c.pr_idc}} {{c.pr_name}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col>
+                <h3><b>ลำดับการกรีด: </b>  {{c.seq}}</h3>
+              </ion-col>
+            </ion-row>
+          <ion-row>
+              <ion-col>
+                <h3  [ngClass]="rf_flg.indexOf(c.rs_flg)> -1?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rs_typeflg}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="rf_flg.indexOf(c.rs_flg) === -1">
+              <ion-col >
+                <h3 class="flgerr"><b>สาเหตุ :</b> {{c.rs_flg_cause}}</h3>
+              </ion-col>
+            </ion-row>
 
+        </ion-item>
+      </ion-list>
+    </ion-card>
   </form>
 </ion-content>

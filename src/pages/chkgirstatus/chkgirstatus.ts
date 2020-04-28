@@ -8,8 +8,10 @@ import { ConfigServiceProvider } from '../../providers/config-service/config-ser
   templateUrl: 'chkgirstatus.html',
 })
 export class ChkgirstatusPage {
-  type_person:any; idcard:any;name:any; item_data_land_rf=[];item_data_land_af=[];item_data_land_fas=[];item_data_land_rs=[];clicked:any;
+  type_person:any; idcard:any;name:any;reqtype:any; item_data_land_rf=[];item_data_land_af=[];item_data_land_fas=[];item_data_land_rs=[];clicked:any;item_data_tapper=[];
   item_data_land_rf_emp=[];tel:any;
+
+  rf_flg = ["0", "3"];
   constructor(public girPro : GirProvider, public config : ConfigServiceProvider,public navCtrl: NavController, public navParams: NavParams) {
 
   }
@@ -36,10 +38,12 @@ export class ChkgirstatusPage {
         if (data.data_detail.length > 0) {
           this.name = data.data_detail[0]['rf_name'];
           this.tel = data.data_detail[0]['rf_tel'];
+          this.reqtype = data.data_detail[0]['reqtype'];
           this.item_data_land_rf = data.data_detail.filter(item => item.land_type == 2); //คบก.
           this.item_data_land_af = data.data_detail.filter(item => item.land_type == 1); // ปลูกแทน
           this.item_data_land_fas = data.data_detail.filter(item => item.land_type == 3); //พอย.
           this.item_data_land_rs = data.data_detail.filter(item => item.land_type == 4); //ขกม.
+          this.item_data_tapper = data.data_detail.filter(item => item.land_type == 5); //คนกรีด
         }
         else
         {

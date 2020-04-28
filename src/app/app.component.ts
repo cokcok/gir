@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ChkgirstatusPage } from './../pages/chkgirstatus/chkgirstatus';
+import { NetworkInterface } from '@ionic-native/network-interface';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +19,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public ga: GoogleAnalytics ) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public ga: GoogleAnalytics,private networkInterface: NetworkInterface ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -39,7 +41,7 @@ export class MyApp {
       this.splashScreen.hide();
 
 
-          this.ga.startTrackerWithId('UA-150913909-1')
+      this.ga.startTrackerWithId('UA-150913909-1')
       .then(() => {
         console.log('Google analytics is ready now');
          this.ga.trackView('test');
@@ -47,6 +49,23 @@ export class MyApp {
       .catch(e => console.log('Error starting GoogleAnalytics', e));
 
        });
+
+    /*    this.networkInterface.getWiFiIPAddress()
+    .then(address => console.info(`IP: ${address.ip}, Subnet: ${address.subnet}`))
+    .catch(error => console.error(`Unable to get IP: ${error}`));
+
+  this.networkInterface.getCarrierIPAddress()
+    .then(address => console.info(`IP: ${address.ip}, Subnet: ${address.subnet}`))
+    .catch(error => console.error(`Unable to get IP: ${error}`)); */
+
+   /*  this.networkInterface.getWiFiIPAddress((ip) => {
+      console.log("IP");
+     console.log(ip);
+   }); */
+
+   //this.networkInterface.getWiFiIPAddress( );
+
+
   }
 
   openPage(page) {
