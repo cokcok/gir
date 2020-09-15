@@ -3,10 +3,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+/* import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list'; */
 import { ChkgirstatusPage } from './../pages/chkgirstatus/chkgirstatus';
-import { NetworkInterface } from '@ionic-native/network-interface';
+
 
 
 @Component({
@@ -19,7 +19,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public ga: GoogleAnalytics,private networkInterface: NetworkInterface ) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public ga: GoogleAnalytics ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation

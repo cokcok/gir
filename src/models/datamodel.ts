@@ -1,5 +1,4 @@
 export interface  data{
-
   data_detail:data_detail[];
 }
 
@@ -13,4 +12,9 @@ export interface rf_rs_emp{
 }
 
 export interface fas_land{
+}
+
+
+export interface  data1{
+
 }

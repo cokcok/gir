@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { data } from '../../models/datamodel';
-import { FeedBack } from '../../models/feedback';
+import { data,data1 } from '../../models/datamodel';
 import { ConfigServiceProvider } from '../config-service/config-service';
 
 
@@ -29,6 +28,7 @@ export class GirProvider {
 
   Chkgir_status(username:string,type_person,uniqid): Observable<data> {
     let api = this.c_config.ip+"/chkgirstatus_web.php";
+    //let api = "http://appcen01.rubber.co.th/ws_rubber_tech/gir/chkgir_status_test.php";
     const header = { 'Content-Type': 'application/json' };
 
      let data = {
@@ -37,5 +37,17 @@ export class GirProvider {
        'type_person':type_person
     };
     return this.http.post<data>(api,data,{headers:header});
+  }
+
+  Chkgir_status1(username:string,type_person): Observable<data1> {
+    let api = this.c_config.ip+"/chkgirstatus_web1.php";
+    //let api = "http://appcen01.rubber.co.th/ws_rubber_tech/gir/chkgir_status1.php";
+    const header = { 'Content-Type': 'application/json' };
+
+     let data = {
+       'idcard':username,
+       'type_person':type_person
+    };
+    return this.http.post<data1>(api,data,{headers:header});
   }
 }

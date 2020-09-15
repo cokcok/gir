@@ -22,7 +22,7 @@ import { ChkgirstatusPageModule } from '../pages/chkgirstatus/chkgirstatus.modul
 
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { NetworkInterface } from '@ionic-native/network-interface';
-
+import { IonicSelectableModule } from 'ionic-selectable';
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import { NetworkInterface } from '@ionic-native/network-interface';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),ChkgirPageModule,TioncardPageModule,EchkgirdetailPageModule,ChkgirstatusPageModule
+    IonicModule.forRoot(MyApp),ChkgirPageModule,TioncardPageModule,EchkgirdetailPageModule,ChkgirstatusPageModule,IonicSelectableModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 @Component({
