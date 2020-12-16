@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GirProvider } from '../../providers/gir/gir';
 import { ConfigServiceProvider } from '../../providers/config-service/config-service';
-//import { IonicSelectableComponent } from 'ionic-selectable';
+import { IonicSelectableComponent } from 'ionic-selectable';
 
 @IonicPage()
 @Component({
@@ -14,7 +14,7 @@ export class ChkgirstatusPage {
   item_data_land_rf_emp=[];tel:any;type_project:any;addr_code:any;app_id:any
   ports_person: any; ports_project: any; item_data_project2:any;flg:any;
   //rf_flg = ["0","3"];
-  rf_flg = ['0'];   rf_flg1 = ['1','2'];
+  rf_flg = ['0'];   rf_flg1 = ['1','2','4'];
   p_idcard:any;urlParameters:any; param:any;
   constructor(public girPro : GirProvider, public config : ConfigServiceProvider,public navCtrl: NavController, public navParams: NavParams) {
 
@@ -33,8 +33,9 @@ export class ChkgirstatusPage {
     ];
 
     this.ports_project = [
-      { id: 2, name: 'ตรวจสอบ ทะเบียนเกษตรกรชาวสวนยาง' },
-      { id: 1, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 1' }
+      { id: 3, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 2' },
+      { id: 2, name: 'ตรวจสอบ ทะเบียนเกษตรกรชาวสวนยาง' }
+      //,{ id: 1, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 1' }
 
     ];
 
@@ -43,6 +44,21 @@ export class ChkgirstatusPage {
     //this.flg = " <pre>1.เกษตรกรชาวสวนยาง คือ เกษตรกรที่มาขึ้นทะเบียนเป็น เจ้าของสวนยาง ผู้เช่า ผู้ทำสวนยาง คนกรีด กับการยางแห่งประเทศไทยในพื้นที่ที่มีเอกสารสิทธิ์</pre> <pre>1.เกษตรกรชาวสวนยาง คือ เกษตรกรที่มาขึ้นทะเบียนเป็น เจ้าของสวนยาง ผู้เช่า ผู้ทำสวนยาง คนกรีด กับการยางแห่งประเทศไทยในพื้นที่ที่มีเอกสารสิทธิ์</pre>  ";
 
   }
+
+
+  portChange(event: {
+    component: IonicSelectableComponent,
+    value: any
+  }) {
+    let port = event.value;
+    //console.log(port.id);
+    if(port.id === 3){
+      let alert = this.config.ChkformAlert('เป็นข้อมูล ณ 15/05/2563');
+      alert.present();
+      return false;
+    }
+  }
+
 
   Chk(myForm) {
    // console.log(myForm);
@@ -92,12 +108,49 @@ export class ChkgirstatusPage {
       );
 
     }
-    if (myForm.type_project.id === 1)
+
+    if (myForm.type_project.id === 1) //คปร.ระยะที่ 1
     {
       let loader = this.config.loadingAlert();
       loader.present();
       let uniqid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
       this.girPro.Chkgir_status(myForm.idcard,myForm.type_person,uniqid).subscribe(
+        (data) => {
+          //console.log(data);
+          if (data.data_detail.length > 0) {
+            this.name = data.data_detail[0]['rf_name'];
+            this.tel = data.data_detail[0]['rf_tel'];
+            this.reqtype = data.data_detail[0]['reqtype'];
+            this.addr_code = data.data_detail[0]['addr_code'];
+            this.item_data_land_rf = data.data_detail.filter(item => item.land_type == 2); //คบก.
+            this.item_data_land_af = data.data_detail.filter(item => item.land_type == 1); // ปลูกแทน
+            this.item_data_land_fas = data.data_detail.filter(item => item.land_type == 3); //พอย.
+            this.item_data_land_rs = data.data_detail.filter(item => item.land_type == 4); //ขกม.
+            this.item_data_tapper = data.data_detail.filter(item => item.land_type == 5); //คนกรีด
+          }
+          else
+          {
+            let alert = this.config.ChkformAlert('ไม่พบข้อมูลเลขบัตรปชช.');
+            alert.present();
+
+          }
+        },
+        (error) => {
+          console.log(JSON.stringify(error));
+          loader.dismiss();
+        },
+        () => {
+          loader.dismiss();
+        }
+      );
+    }
+
+    if (myForm.type_project.id === 3) //คปร.ระยะที่ 2
+    {
+      let loader = this.config.loadingAlert();
+      loader.present();
+      let uniqid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      this.girPro.Chkgir_status_phase2(myForm.idcard,myForm.type_person,uniqid).subscribe(
         (data) => {
           //console.log(data);
           if (data.data_detail.length > 0) {

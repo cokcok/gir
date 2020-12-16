@@ -13,12 +13,6 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <!-- <ion-list radio-group [(ngModel)]="type_person" name="type_person">
-            <p align="left">1. ระบุเลขประจำตัวประชาชน
-              <ion-radio value="1"></ion-radio>บุคคลธรรมดา
-              <ion-radio value="2"></ion-radio>นิติบุคคล
-            </p>
-          </ion-list> -->
           <ion-item>
             <ion-label floating>ประเภท</ion-label>
            <ionic-selectable
@@ -40,6 +34,7 @@
               itemValueField="id"
               itemTextField="name"
               [canSearch]="true"
+              (onChange)="portChange($event)"
              >
             </ionic-selectable>
           </ion-item>
@@ -84,6 +79,9 @@
     <ion-card *ngIf="item_data_land_rf?.length ">
       <ion-card-header>
         แปลง คบก.
+      </ion-card-header>
+      <ion-card-header class="index15">
+        ** เป็นข้อมูล ณ วันที่ 15 พฤษภาคม 2563
       </ion-card-header>
       <ion-list *ngFor="let c of item_data_land_rf ; let i = index " >
         <ion-item class="detail1">
@@ -144,7 +142,7 @@
              <!--  *ngIf="rf_flg1.indexOf(c.rf_flg) === -1 " -->
             <ion-row  *ngIf="isFound(c.rf_flg)" >
             <ion-col >
-              <h3 class="flgerr"><b>สาเหตุ :</b>{{c.rf_flg_cause}}</h3>
+              <h3 class="flgerr"><b>สาเหตุ : </b>{{c.rf_flg_cause}}</h3>
             </ion-col>
           </ion-row>
           <ion-row  *ngIf="c.rf_emp_regis_land ==='1'" >
@@ -159,6 +157,9 @@
     <ion-card *ngIf="item_data_tapper?.length ">
       <ion-card-header>
         คนกรีด แปลง คบก.
+      </ion-card-header>
+      <ion-card-header class="index15">
+        ** เป็นข้อมูล ณ วันที่ 15 พฤษภาคม 2563
       </ion-card-header>
       <ion-list *ngFor="let c of item_data_tapper ; let i = index ">
         <ion-item class="detail1">
@@ -202,12 +203,12 @@
                 <h3><b>ลำดับการกรีด: </b>  {{c.seq}}</h3>
               </ion-col>
             </ion-row>
-          <ion-row>
+          <ion-row >
               <ion-col>
                 <h3  [ngClass]="rf_flg.indexOf(c.rs_flg)> -1?'flgtrue':'flgerr'"><b>คุณสมบัติ :</b> {{c.rs_typeflg}}</h3>
               </ion-col>
             </ion-row>
-            <ion-row *ngIf="rf_flg.indexOf(c.rs_flg) === -1">
+            <ion-row  *ngIf="isFound(c.rs_flg)" ><!--  *ngIf="rf_flg.indexOf(c.rs_flg) === -1" -->
               <ion-col >
                 <h3 class="flgerr"><b>สาเหตุ :</b> {{c.rs_flg_cause}}</h3>
               </ion-col>
@@ -220,6 +221,9 @@
     <ion-card *ngIf="item_data_land_rs?.length ">
         <ion-card-header>
           แปลง ขกม.
+        </ion-card-header>
+        <ion-card-header class="index15">
+          ** เป็นข้อมูล ณ วันที่ 15 พฤษภาคม 2563
         </ion-card-header>
         <ion-list *ngFor="let c of item_data_land_rs ; let i = index ">
           <ion-item class="detail1">
@@ -270,9 +274,9 @@
                 </ion-col>
               </ion-row>
              <!--  <ion-row *ngIf="rf_flg.indexOf(c.rs_flg) === -1"> -->
-                <ion-row  *ngIf="isFound(c.rf_flg)" >
+                <ion-row  *ngIf="isFound(c.rs_flg)" >
                 <ion-col >
-                  <h3 class="flgerr"><b>สาเหตุ :</b> {{c.rs_flg_cause}}</h3>
+                  <h3 class="flgerr"><b>สาเหตุ : </b> {{c.rs_flg_cause}}</h3>
                 </ion-col>
               </ion-row>
 

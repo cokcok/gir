@@ -39,6 +39,21 @@ export class GirProvider {
     return this.http.post<data>(api,data,{headers:header});
   }
 
+
+  Chkgir_status_phase2(username:string,type_person,uniqid): Observable<data> {
+    let api = this.c_config.ip+"/chkgirstatus_web_phase2_25630515.php";
+    //let api = "http://appcen01.rubber.co.th/ws_rubber_tech/gir/chkgir_status_test.php";
+    const header = { 'Content-Type': 'application/json' };
+
+     let data = {
+       'idcard':username,
+       'id':uniqid,
+       'type_person':type_person
+    };
+    return this.http.post<data>(api,data,{headers:header});
+  }
+
+
   Chkgir_status1(username:string,type_person): Observable<data1> {
     let api = this.c_config.ip+"/chkgirstatus_web1.php";
     //let api = "http://appcen01.rubber.co.th/ws_rubber_tech/gir/chkgir_status1.php";
