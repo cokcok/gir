@@ -19,7 +19,7 @@ export class ChkgirPage {
     //console.log(this.config.mySentences[1]);
    // console.log(this.config.filter(this.config.mySentences, { id: 1 }));
     //console.log(this.config.filter(this.config.mySentences, { id: 1 })[0]['text']);
-    this.idcard = '3100202253574';
+    //this.idcard = '3100202253574';
 
   }
 
