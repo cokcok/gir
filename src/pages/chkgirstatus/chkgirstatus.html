@@ -55,18 +55,18 @@
             <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col>
+        <!--<ion-col>
           <ion-item>
             <ion-label floating>เบอร์ติดต่อ:</ion-label>
             <ion-input type="text" [(ngModel)]="tel" name="tel"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col>
+         <ion-col>
           <ion-item>
             <ion-label floating>รหัสประจำบ้าน:</ion-label>
             <ion-input type="text" [(ngModel)]="addr_code" name="addr_code"></ion-input>
           </ion-item>
-        </ion-col>
+        </ion-col> -->
         <ion-col>
           <ion-item>
             <ion-label floating>สถานะเกษตรกร:</ion-label>
@@ -362,6 +362,14 @@
             <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
           </ion-item>
         </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>วันที่ขึ้นทะเบียน:</ion-label>
+            <ion-input type="text" [(ngModel)]="create_date" name="create_date"></ion-input>
+          </ion-item>
+        </ion-col>
         <ion-col *ngIf="app_id">
           <ion-item>
             <ion-label floating>เลขขึ้นทะเบียนเกษตรกร:</ion-label>
@@ -370,10 +378,39 @@
         </ion-col>
         <ion-col>
           <ion-item>
+            <ion-label floating>จำนวนแปลงที่ขึ้นทะเบียน:</ion-label>
+            <ion-input type="text" [(ngModel)]="count_land" name="count_land"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>เนื้อที่รวมที่ขึ้นทะเบียนทั้งหมด :</ion-label>
+            <ion-input type="text" [(ngModel)]="sum_area" name="sum_area"></ion-input>
+          </ion-item>
+        </ion-col>
+        <!-- <ion-col>
+          <ion-item>
             <ion-label floating>รหัสประจำบ้าน:</ion-label>
             <ion-input type="text" [(ngModel)]="addr_code" name="addr_code"></ion-input>
           </ion-item>
-        </ion-col>
+        </ion-col> -->
+        <ion-card *ngIf="detail_land?.length ">
+          <ion-card-header>
+            รายละเอียดแปลง
+          </ion-card-header>
+
+          <ion-list *ngFor="let c of detail_land ; let i = index ">
+            <ion-item class="detail1">
+              <ion-row >
+                <ion-col> แปลงที่ {{c.seq}}</ion-col>
+                <ion-col> {{c.area1}} ไร่ </ion-col>
+                <ion-col> {{c.area2}} งาน </ion-col>
+                <ion-col> {{c.area3}} ตารางวา </ion-col>
+              </ion-row>
+            </ion-item>
+
+          </ion-list>
+          </ion-card>
       </ion-row>
       <ion-row>
         <ion-col>
@@ -383,6 +420,8 @@
           </ion-item>
         </ion-col>
       </ion-row>
+
+
       <ion-row>
         <ion-col>
           <ion-item>

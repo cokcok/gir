@@ -4,7 +4,7 @@ import { AlertController, LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class ConfigServiceProvider {
-  public ip: string = "https://www.rubber.co.th/gir/sc";
+  public ip: string = "https://www.raot.co.th/gir/sc";
 
   public mySentences = [
     {id: 1, text: 'Sentence 1'},
