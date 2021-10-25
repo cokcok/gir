@@ -411,6 +411,26 @@
 
           </ion-list>
           </ion-card>
+
+          <ion-card *ngIf="detail_land_tapper?.length ">
+            <ion-card-header class="card-header1">
+              รายละเอียดแปลงที่เป็นคนกรีด
+            </ion-card-header>
+
+            <ion-list *ngFor="let c of detail_land_tapper ; let i = index ">
+              <ion-item class="detail1">
+                <ion-row >
+                  <ion-col> แปลงที่ {{c.seq}}</ion-col>
+                  <ion-col> {{c.area1}} ไร่ </ion-col>
+                  <ion-col> {{c.area2}} งาน </ion-col>
+                  <ion-col> {{c.area3}} ตารางวา </ion-col>
+                  <ion-col> ชื่อเจ้าของสวน {{c.farm_name}}  </ion-col>
+                </ion-row>
+              </ion-item>
+
+            </ion-list>
+            </ion-card>
+
       </ion-row>
       <ion-row>
         <ion-col>

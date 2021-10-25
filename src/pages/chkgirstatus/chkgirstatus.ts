@@ -12,7 +12,7 @@ import { IonicSelectableComponent } from 'ionic-selectable';
 export class ChkgirstatusPage {
   type_person:any; idcard:any;name:any;reqtype:any; item_data_land_rf=[];item_data_land_af=[];item_data_land_fas=[];item_data_land_rs=[];clicked:any;item_data_tapper=[];
   item_data_land_rf_emp=[];tel:any;type_project:any;addr_code:any;app_id:any
-  count_land:any;create_date:any;sum_area:any;detail_land=[];
+  count_land:any;create_date:any;sum_area:any;detail_land=[];detail_land_tapper=[];
   ports_person: any; ports_project: any; item_data_project2:any;flg:any;
   //rf_flg = ["0","3"];
   rf_flg = ['0'];   rf_flg1 = ['1','2','4'];
@@ -95,6 +95,7 @@ export class ChkgirstatusPage {
             this.app_id = data['app_id'];
             this.sum_area = data['sum_area'] + ' ไร่';
             this.detail_land  = data['detail_land'];
+            this.detail_land_tapper = data['detail_land_tapper'];
           }
           else
           {
