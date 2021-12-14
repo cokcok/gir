@@ -34,7 +34,7 @@ export class ChkgirstatusPage {
     ];
 
     this.ports_project = [
-      { id: 3, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 2' },
+      { id: 3, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 3' },
       { id: 2, name: 'ตรวจสอบ ทะเบียนเกษตรกรชาวสวนยาง' }
       //,{ id: 1, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 1' }
 
@@ -54,7 +54,7 @@ export class ChkgirstatusPage {
     let port = event.value;
     //console.log(port.id);
     if(port.id === 3){
-      let alert = this.config.ChkformAlert('เป็นข้อมูล ณ 15/05/2563');
+      let alert = this.config.ChkformAlert('เป็นข้อมูลที่ขึ้นทะเบียนก่อน 14/06/2564');
       alert.present();
       return false;
     }
@@ -156,9 +156,9 @@ export class ChkgirstatusPage {
       let loader = this.config.loadingAlert();
       loader.present();
       let uniqid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      this.girPro.Chkgir_status_phase2(myForm.idcard,myForm.type_person,uniqid).subscribe(
+      this.girPro.Chkgir_status_phase3(myForm.idcard,myForm.type_person,uniqid).subscribe(
         (data) => {
-          //console.log(data);
+          console.log(data);
           if (data.data_detail.length > 0) {
             this.name = data.data_detail[0]['rf_name'];
             this.tel = data.data_detail[0]['rf_tel'];
@@ -169,7 +169,7 @@ export class ChkgirstatusPage {
             this.item_data_land_fas = data.data_detail.filter(item => item.land_type == 3); //พอย.
             this.item_data_land_rs = data.data_detail.filter(item => item.land_type == 4); //ขกม.
             this.item_data_tapper = data.data_detail.filter(item => item.land_type == 5); //คนกรีด
-          }
+          } 
           else
           {
             let alert = this.config.ChkformAlert('ไม่พบข้อมูลเลขบัตรปชช.');
@@ -178,7 +178,8 @@ export class ChkgirstatusPage {
           }
         },
         (error) => {
-          console.log(JSON.stringify(error));
+          console.log(error);
+          //console.log(JSON.stringify(error));
           loader.dismiss();
         },
         () => {

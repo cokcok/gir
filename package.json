@@ -1,6 +1,6 @@
 {
   "name": "gir",
-  "version": "2.0.3",
+  "version": "3.0.1",
   "author": "RAOT",
   "homepage": "http://www.rubber.co.th/gir/index",
   "private": true,
@@ -58,6 +58,9 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-google-analytics": {},
       "cordova-plugin-networkinterface": {}
+    },
+    "config": {
+      "ionic_webpack": "./config/webpack.config.js"
     },
     "platforms": [
       "browser"
