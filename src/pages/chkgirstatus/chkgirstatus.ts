@@ -151,7 +151,7 @@ export class ChkgirstatusPage {
       );
     }
 
-    if (myForm.type_project.id === 3) //คปร.ระยะที่ 2
+    if (myForm.type_project.id === 3) //คปร.ระยะที่ 3
     {
       let loader = this.config.loadingAlert();
       loader.present();
@@ -169,7 +169,7 @@ export class ChkgirstatusPage {
             this.item_data_land_fas = data.data_detail.filter(item => item.land_type == 3); //พอย.
             this.item_data_land_rs = data.data_detail.filter(item => item.land_type == 4); //ขกม.
             this.item_data_tapper = data.data_detail.filter(item => item.land_type == 5); //คนกรีด
-          } 
+          }
           else
           {
             let alert = this.config.ChkformAlert('ไม่พบข้อมูลเลขบัตรปชช.');

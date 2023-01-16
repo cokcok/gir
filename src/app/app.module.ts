@@ -18,11 +18,13 @@ import { ConfigServiceProvider } from '../providers/config-service/config-servic
 import { ChkgirPageModule } from '../pages/chkgir/chkgir.module';
 import { TioncardPageModule } from '../pages/tioncard/tioncard.module';
 import { EchkgirdetailPageModule } from '../pages/echkgirdetail/echkgirdetail.module';
-import { ChkgirstatusPageModule } from '../pages/chkgirstatus/chkgirstatus.module';
 
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { NetworkInterface } from '@ionic-native/network-interface';
 import { IonicSelectableModule } from 'ionic-selectable';
+
+import { ChkgirstatusPageModule } from '../pages/chkgirstatus/chkgirstatus.module';
+
 
 
 @NgModule({

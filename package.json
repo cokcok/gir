@@ -59,9 +59,6 @@
       "cordova-plugin-google-analytics": {},
       "cordova-plugin-networkinterface": {}
     },
-    "config": {
-      "ionic_webpack": "./config/webpack.config.js"
-    },
     "platforms": [
       "browser"
     ]
