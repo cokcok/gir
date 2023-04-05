@@ -34,7 +34,7 @@ export class ChkgirstatusPage {
     ];
 
     this.ports_project = [
-      { id: 3, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 3' },
+      { id: 3, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 4' },
       { id: 2, name: 'ตรวจสอบ ทะเบียนเกษตรกรชาวสวนยาง' }
       //,{ id: 1, name: 'ตรวจสอบ ประกันรายได้ ระยะที่ 1' }
 
@@ -54,7 +54,7 @@ export class ChkgirstatusPage {
     let port = event.value;
     //console.log(port.id);
     if(port.id === 3){
-      let alert = this.config.ChkformAlert('เป็นข้อมูลที่ขึ้นทะเบียนก่อน 14/06/2564');
+      let alert = this.config.ChkformAlert('เป็นข้อมูลที่ขึ้นทะเบียนก่อน 30/06/2565');
       alert.present();
       return false;
     }
@@ -151,12 +151,12 @@ export class ChkgirstatusPage {
       );
     }
 
-    if (myForm.type_project.id === 3) //คปร.ระยะที่ 3
+    if (myForm.type_project.id === 3) //คปร.ระยะที่ 3 - 4
     {
       let loader = this.config.loadingAlert();
       loader.present();
       let uniqid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      this.girPro.Chkgir_status_phase3(myForm.idcard,myForm.type_person,uniqid).subscribe(
+      this.girPro.Chkgir_status_phase4(myForm.idcard,myForm.type_person,uniqid).subscribe(
         (data) => {
           console.log(data);
           if (data.data_detail.length > 0) {
@@ -172,7 +172,7 @@ export class ChkgirstatusPage {
           }
           else
           {
-            let alert = this.config.ChkformAlert('ไม่พบข้อมูลเลขบัตรปชช.');
+            let alert = this.config.ChkformAlert('ไม่พบข้อมูลเข้าร่วมประกันรายได้');
             alert.present();
 
           }

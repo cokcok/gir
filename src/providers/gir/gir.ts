@@ -54,6 +54,19 @@ export class GirProvider {
   }
 
 
+  Chkgir_status_phase4(username:string,type_person,uniqid): Observable<data> {
+    let api = this.c_config.ip+"/chkgirstatus_web_phase4.php";
+    //let api = "https://appcen01.raot.co.th/ws_rubber_tech/gir/chkgir_status_ph3.php";
+    const header = { 'Content-Type': 'application/json' };
+
+     let data = {
+       'idcard':username,
+       'id':uniqid,
+       'type_person':type_person
+    };
+    return this.http.post<data>(api,data,{headers:header});
+  }
+
   Chkgir_status1(username:string,type_person): Observable<data1> {
     let api = this.c_config.ip+"/chkgirstatus_web1.php";
     //let api = "https://appcen01.raot.co.th/ws_rubber_tech/gir/chkgir_status1.php";
