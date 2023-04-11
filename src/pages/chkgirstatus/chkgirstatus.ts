@@ -187,7 +187,6 @@ export class ChkgirstatusPage {
         }
       );
     }
-
   }
 
   refresh(){
